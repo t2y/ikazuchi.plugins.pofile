@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import os
 import polib
 import re
 from ikazuchi.core.handler.base import BaseHandler
+from ikazuchi.core.handler.utils import get_file_from_args
 
 try:
     from ikazuchi.locale import _
@@ -24,19 +24,11 @@ class Handler(BaseHandler):
         if opts.api == "microsoft":
             self.method_name = "translate_array"
         self.encoding = opts.encoding
-        po_file = self._get_po_file(opts.plugin[1:])
+        po_file = get_file_from_args(opts.plugin[1:])[0]
         self.po = polib.pofile(po_file, autodetect_encoding=False,
                                encoding=self.encoding[1])
         self.po.metadata["Content-Type"] = "text/plain; charset={0}".format(
                                                 self.encoding[1])
-
-    def _get_po_file(self, args):
-        po_file = args[0] if args[0:1] else None
-        if not po_file:
-            raise ValueError(_(u"Give xxx.po file as \"-p pofile xxx.po\""))
-        if not os.access(po_file, os.R_OK):
-            raise  ValueError(_(u"Cannot access po file: {0}").format(po_file))
-        return po_file
 
     def _select_translation(self, ref, current, entered):
         """define which translated string use"""
