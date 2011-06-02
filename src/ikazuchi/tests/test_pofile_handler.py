@@ -8,10 +8,11 @@ from ikazuchi.plugins.pofile import *
 
 class TestHandler(object):
     class Option(object):
-        def __init__(self, pofile):
+        def __init__(self):
             self.api = "google"
-            self.plugin["pofile", pofile]
+            self.plugin = None
             self.encoding = ["utf-8", "utf-8"]
+    option = Option()
 
     def setup(self):
         def make_po_file(path):
@@ -20,6 +21,7 @@ class TestHandler(object):
             f.flush()
             return f
         self.po_file = make_po_file(tempfile.tempdir)
+        self.option.plugin = ["pofile", self.po_file.name]
 
     def teardown(self):
         self.po_file.close()
@@ -33,7 +35,7 @@ class TestHandler(object):
             (["ref", "cur", "ent"], "ent"),
             (["ref", "", "ent"], "ent"),
         ]
-        h = Handler(Option(self.po_file.name))
+        h = Handler(self.option)
         for d in data:
             assert_equals(d[1], h._select_translation(*d[0]))
 
