@@ -40,7 +40,7 @@ setup(
      package_data={"": ["buildout.cfg"]},
      namespace_packages=["ikazuchi", "ikazuchi.plugins"],
      include_package_data=True,
-     install_requires=["distribute", "polib", "ikazuchi"]
+     install_requires=["distribute", "polib", "ikazuchi"],
      extras_require={
         "test": ["Nose", "pep8"],
      },
