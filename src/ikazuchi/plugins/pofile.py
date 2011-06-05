@@ -3,7 +3,8 @@
 import polib
 import re
 from ikazuchi.core.handler.base import BaseHandler
-from ikazuchi.core.handler.utils import get_file_from_args
+from ikazuchi.core.handler.utils import get_and_check_file_access
+from ikazuchi.ikazuchi import (base_parser, subparsers)
 
 try:
     from ikazuchi.locale import _
@@ -13,6 +14,11 @@ except ImportError:
 _NOTRANSLATE_PTRN = re.compile(r"""(
       ["|']*(%|%(.+?))[d|r|s]["|']*
 )""", re.U | re.X)
+
+# argument parser for rstfile
+po_parser = subparsers.add_parser("pofile", parents=[base_parser])
+po_parser.set_defaults(po_file=None)
+po_parser.add_argument(dest="po_file", help="target po file")
 
 class Handler(BaseHandler):
     """
@@ -24,7 +30,7 @@ class Handler(BaseHandler):
         if opts.api == "microsoft":
             self.method_name = "translate_array"
         self.encoding = opts.encoding
-        po_file = get_file_from_args(opts.plugin[1:])[0]
+        po_file = get_and_check_file_access(opts.po_file)
         self.po = polib.pofile(po_file, autodetect_encoding=False,
                                encoding=self.encoding[1])
         self.po.metadata["Content-Type"] = "text/plain; charset={0}".format(
