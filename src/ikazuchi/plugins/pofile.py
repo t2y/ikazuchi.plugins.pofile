@@ -15,7 +15,7 @@ _NOTRANSLATE_PTRN = re.compile(r"""(
       ["|']*(%|%(.+?))[d|r|s]["|']*
 )""", re.U | re.X)
 
-# argument parser for rstfile
+# argument parser for pofile
 po_parser = subparsers.add_parser("pofile", parents=[base_parser])
 po_parser.set_defaults(po_file=None)
 po_parser.add_argument(dest="po_file", help="target po file")
