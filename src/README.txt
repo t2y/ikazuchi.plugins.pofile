@@ -37,14 +37,14 @@ Usage
 
 Translate PO file with ikazuchi command::
 
-    $ ./bin/ikazuchi pofile examples/short_test.po 
+    $ ikazuchi pofile examples/short_test.po 
     msgid:                   ikazuchi translation
     reference(Google):       [Actually, translated sentence]
     Input:
 
 Show which plugins are available::
 
-    $ /ikazuchi -h
+    $ ikazuchi -h
     usage: ikazuchi [-h] {rstfile,pofile,normal} ...
 
     positional arguments:
