@@ -10,7 +10,7 @@ class TestHandler(object):
     class Option(object):
         def __init__(self):
             self.api = "google"
-            self.plugin = None
+            self.po_file = None
             self.encoding = ["utf-8", "utf-8"]
     option = Option()
 
@@ -21,7 +21,7 @@ class TestHandler(object):
             f.flush()
             return f
         self.po_file = make_po_file(tempfile.tempdir)
-        self.option.plugin = ["pofile", self.po_file.name]
+        self.option.po_file = self.po_file.name
 
     def teardown(self):
         self.po_file.close()
