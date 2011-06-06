@@ -37,32 +37,41 @@ Usage
 
 Translate PO file with ikazuchi command::
 
-    $ ./bin/ikazuchi -p pofile examples/short_test.po 
+    $ ./bin/ikazuchi pofile examples/short_test.po 
     msgid:                   ikazuchi translation
     reference(Google):       [Actually, translated sentence]
     Input:
 
-All command option are::
+Show which plugins are available::
 
-    $ ikazuchi -h
-    usage: ikazuchi [-h] [-a API] [-d] [-e ENCODING] [-f LANG] [-l]
-                    [-p PLUGIN [PLUGIN ...]] [-q] [-s SENTENCE [SENTENCE ...]]
-                    [-t LANG] [--version]
+    $ /ikazuchi -h
+    usage: ikazuchi [-h] {rstfile,pofile,normal} ...
+
+    positional arguments:
+      {rstfile,pofile,normal}
+                            available plugins. 'normal' means ikazuchi's standard
+                            feature so it can be abbreviated
+
+    optional arguments:
+      -h, --help            show this help message and exit
+
+Show pofile plugin help::
+
+    $ ikazuchi pofile -h
+    usage: ikazuchi pofile [-h] [-a API] [-e ENCODING] [-f LANG] [-q] [-t LANG]
+                           [--version]
+                           po_file
+
+    positional arguments:
+      po_file               target po file
 
     optional arguments:
       -h, --help            show this help message and exit
       -a API, --api API     APIs are ['google', 'microsoft']
-      -d, --detect          detect language for target sentence
       -e ENCODING, --encoding ENCODING
                             input/output encoding
       -f LANG, --from LANG  original language
-      -l, --languages       show supported languages
-      -p PLUGIN [PLUGIN ...], --plugin PLUGIN [PLUGIN ...]
-                            extend with plugin, show available plugins using
-                            "help"
       -q, --quiet           not to show original sentence to stdout
-      -s SENTENCE [SENTENCE ...], --sentences SENTENCE [SENTENCE ...]
-                            target sentences
       -t LANG, --to LANG    target language to translate
       --version             show program's version number and exit
 
@@ -71,7 +80,7 @@ Requirements
 ============
 
 * Python 2.6 or later
-* ikazuchi 0.5.0 or later
+* ikazuchi 0.5.1 or later
 * polib 0.5.5 or later
 * setuptools or distriubte
 
@@ -84,6 +93,10 @@ Apache License 2.0
 
 History
 =======
+
+0.1.1 (2011-06-06)
+------------------
+* add subparser for pofile plug-in
 
 0.1.0 (2011-06-03)
 ------------------

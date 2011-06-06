@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 from os.path import join as pathjoin
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 LONG_DESCRIPTION = "".join([
     open(pathjoin("src","README.txt")).read(),
     open(pathjoin("src","TODO.txt")).read()])
@@ -40,7 +40,7 @@ setup(
      package_data={"": ["buildout.cfg"]},
      namespace_packages=["ikazuchi", "ikazuchi.plugins"],
      include_package_data=True,
-     install_requires=["distribute", "polib", "ikazuchi>=0.5.0"],
+     install_requires=["distribute", "polib", "ikazuchi>=0.5.1"],
      extras_require={
         "test": ["Nose", "pep8"],
      },

@@ -11,6 +11,8 @@ try:
 except ImportError:
     def _(s): return s
 
+__version__ = "0.1.1"
+
 _NOTRANSLATE_PTRN = re.compile(r"""(
       ["|']*(%|%(.+?))[d|r|s]["|']*
 )""", re.U | re.X)
@@ -19,6 +21,8 @@ _NOTRANSLATE_PTRN = re.compile(r"""(
 po_parser = subparsers.add_parser("pofile", parents=[base_parser])
 po_parser.set_defaults(po_file=None)
 po_parser.add_argument(dest="po_file", help="target po file")
+po_parser.add_argument("--version", action="version",
+                        version="%(prog)s {0}".format(__version__))
 
 class Handler(BaseHandler):
     """
