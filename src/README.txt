@@ -94,6 +94,10 @@ Apache License 2.0
 History
 =======
 
+0.1.2 (2011-11-26)
+------------------
+* use Microsoft Translator as Default API
+
 0.1.1 (2011-06-06)
 ------------------
 * add subparser for pofile plug-in

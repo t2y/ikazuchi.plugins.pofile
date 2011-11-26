@@ -11,7 +11,7 @@ try:
 except ImportError:
     def _(s): return s
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 _NOTRANSLATE_PTRN = re.compile(r"""(
       ["|']*(%|%(.+?))[d|r|s]["|']*
@@ -31,7 +31,7 @@ class Handler(BaseHandler):
     max_query = 100
 
     def __init__(self, opts):
-        if opts.api == "microsoft":
+        if not opts.api or opts.api == "microsoft":
             self.method_name = "translate_array"
         self.encoding = opts.encoding
         po_file = get_and_check_file_access(opts.po_file)
